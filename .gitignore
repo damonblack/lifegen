@@ -17,3 +17,5 @@ vendor/ruby
 # RVM gemset
 .ruby-gemset
 .rvmrc
+
+.idea
