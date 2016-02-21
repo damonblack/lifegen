@@ -19,3 +19,5 @@ vendor/ruby
 .rvmrc
 
 .idea
+tags
+byebug_history
