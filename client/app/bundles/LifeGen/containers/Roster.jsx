@@ -1,6 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import CharacterSheet from '../components/CharacterSheet';
 
-export default class LifeGen extends React.Component {
+export default class Roster extends React.Component {
+
   constructor(props, context) {
     super(props, context);
   }
@@ -9,14 +11,15 @@ export default class LifeGen extends React.Component {
     var lives = this.props.lives;
     return (
       <div>
-        {lives.map(function(life) {
-          return (
-            <div>
-              <h3>{life.character_sheet.name}</h3>
-              <div>{JSON.stringify(life.character_sheet.attributes)}</div>
-            </div>
-          );
-        })}
+        {
+          lives.map(function(life) {
+            return (
+              <div className="life_listing">
+                <CharacterSheet characterSheet={life.character_sheet} />
+              </div>
+            );
+          }.bind(this))
+        }
       </div>
     );
   }
