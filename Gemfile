@@ -7,6 +7,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
+gem "react_on_rails", "~> 3"
 
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
@@ -36,4 +37,12 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+end
+
+# require: false is necessary for the linters as we only want them loaded
+# when used by the linting rake tasks.
+group :development do
+  gem("rubocop", require: false)
+  gem("ruby-lint", require: false)
+  gem("scss_lint", require: false)
 end
