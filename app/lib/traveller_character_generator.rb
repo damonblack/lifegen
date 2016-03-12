@@ -8,6 +8,25 @@ class TravellerCharacterGenerator
     :SOC
   ]
 
+  MODS = {
+    0 => -3,
+    1 => -2,
+    2 => -2,
+    3 => -1,
+    4 => -1,
+    5 => -1,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 1,
+    10 => 1,
+    11 => 1,
+    12 => 2,
+    13 => 2,
+    14 => 2,
+    15 => 3
+  }
+
   def create_starting_character 
     character_sheet = {}
     character_sheet[:age] = 18

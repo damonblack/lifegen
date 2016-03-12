@@ -9,6 +9,13 @@ export default {
     );
   },
 
+  updateCharacter(characterId, data) {
+    return (
+      this._doPost('PUT', `/lives/${characterId}.json`, {life: data})
+    );
+
+  },
+
   deleteCharacter(characterId) {
     return (
       this._doPost('DELETE', `/lives/${characterId}.json`)
