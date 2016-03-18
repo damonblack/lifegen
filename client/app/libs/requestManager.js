@@ -5,7 +5,7 @@ export default {
 
   createCharacter() {
     return (
-      this._doPost('POST', '/lives.json')
+      this._doPost('POST', '/characters.json')
     );
   },
 

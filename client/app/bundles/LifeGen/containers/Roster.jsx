@@ -3,7 +3,9 @@ import _ from 'lodash';
 import requestManager from '../../../libs/requestManager';
 import CharacterSheet from '../components/CharacterSheet';
 
-export default class Roster extends React.Component {
+function getLivesState
+
+class Roster extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -38,3 +40,5 @@ export default class Roster extends React.Component {
     );
   }
 }
+
+export default

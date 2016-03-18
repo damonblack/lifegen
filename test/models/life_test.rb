@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class LifeTest < ActiveSupport::TestCase
-  test "A life accepts a JSON formatted character sheet" do
-    life = Life.new(character_sheet: { 
+  test "A character accepts a JSON formatted character sheet" do
+    life = Character.new(character_sheet: {
       name: "Bob", 
       level: "2nd", 
       age: 34, 

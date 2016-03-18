@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @lives = Life.all
+    characters = Character.all
   end
 end
