@@ -1,44 +1,47 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import requestManager from '../../../libs/requestManager';
 import CharacterSheet from '../components/CharacterSheet';
 
-function getLivesState
+function loadCharacters(state) {
+  return { characters: state };
+}
 
 class Roster extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { lives: props.lives };
-    _.bindAll(this, ['_newCharacter', '_updateLives']);
+    this.state = { characters: props.characters };
+    _.bindAll(this, ['_newCharacter', '_updateCharacters']);
   }
 
   _newCharacter() {
-    requestManager.createCharacter().then(this._updateLives)
+    requestManager.createCharacter().then(this._updateCharacters)
   }
 
-  _updateLives(response) {
-    this.setState({lives: response.data.lives});
+  _updateCharacters(response) {
+    this.setState({characters: response.data.characters});
   }
 
   render() {
-    var lives = this.state.lives;
+    var characters = this.state.characters;
 
     return (
       <div>
         {
-          lives.map(function(life) {
+          characters.map(function(character) {
             return (
-              <div className="life_listing" key={life.id}>
-                <CharacterSheet life={life} updateLives={this._updateLives}/>
+              <div className="character_listing" key={character.id}>
+                <CharacterSheet character={character} updateCharacters={this._updateCharacters}/>
               </div>
             );
           }.bind(this))
         }
-        <button className="new-life-btn" onClick={this._newCharacter}>New Character</button>
+        <button className="new-character-btn" onClick={this._newCharacter}>New Character</button>
       </div>
     );
   }
 }
 
-export default
+export default connect(loadCharacters)(Roster);

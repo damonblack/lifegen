@@ -5,6 +5,7 @@ import Roster from '../containers/Roster';
 import createStore from '../store/charactersStore';
 
 export default (props) => {
+  console.log('LifeGenAppServer called');
   const store = createStore(props);
 
   return (

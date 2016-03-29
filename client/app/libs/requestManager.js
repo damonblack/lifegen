@@ -11,14 +11,14 @@ export default {
 
   updateCharacter(characterId, data) {
     return (
-      this._doPost('PUT', `/lives/${characterId}.json`, {life: data})
+      this._doPost('PUT', `/characters/${characterId}.json`, {character: data})
     );
 
   },
 
   deleteCharacter(characterId) {
     return (
-      this._doPost('DELETE', `/lives/${characterId}.json`)
+      this._doPost('DELETE', `/characters/${characterId}.json`)
     );
   },
 

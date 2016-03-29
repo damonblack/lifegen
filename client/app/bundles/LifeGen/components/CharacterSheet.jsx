@@ -7,7 +7,7 @@ export default class CharacterSheet extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      name: this.props.life.characterSheet.name,
+      name: this.props.character.characterSheet.name,
       modified: false
     };
 
@@ -22,8 +22,8 @@ export default class CharacterSheet extends React.Component {
   }
 
   _deleteMe() {
-    requestManager.deleteCharacter(this.props.life.id)
-      .then(this.props.updateLives);
+    requestManager.deleteCharacter(this.props.character.id)
+      .then(this.props.updateCharacters);
   }
 
   _updateName(event) {
@@ -41,7 +41,7 @@ export default class CharacterSheet extends React.Component {
 
   _saveName(event) {
     if (this.state.modified) {
-      requestManager.updateCharacter(this.props.life.id, {
+      requestManager.updateCharacter(this.props.character.id, {
           characterSheet: {
             name: event.target.value
           }
@@ -65,7 +65,7 @@ export default class CharacterSheet extends React.Component {
   }
 
   render() {
-    var characterSheet = this.props.life.characterSheet;
+    var characterSheet = this.props.character.characterSheet;
     return (
       <div>
         <input

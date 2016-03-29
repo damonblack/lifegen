@@ -1,3 +1,8 @@
+import { createStore } from 'redux';
+import reducer from '../reducers/charactersReducer';
+
 export default props => {
-  const initialCharacters = props.characters;
+  console.log('creating store with props');
+  console.log(props.characters);
+  return createStore(reducer, props.characters);
 };
