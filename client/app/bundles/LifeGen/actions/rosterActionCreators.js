@@ -1,11 +1,11 @@
-import * as actionTypes from '../constants/charactersConstants';
+import * as actionTypes from '../constants/rosterConstants';
 import requestManager from '../../../libs/requestManager';
 
 
 export function createCharactersSuccess(data) {
   return {
     type: actionTypes.CREATE_CHARACTER_SUCCESS,
-    characters: data.characters,
+    roster: data.characters,
   };
 }
 

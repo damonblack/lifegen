@@ -1,20 +1,20 @@
 /* eslint new-cap: 0 */
 
 import Immutable from 'immutable';
-import * as actionTypes from '../constants/charactersConstants';
+import * as actionTypes from '../constants/rosterConstants';
 
 export const initialState = Immutable.fromJS({
-  characters: [],
+  roster: [],
 });
 
-export default function charactersReducer(state = initialState, action = null) {
-  const { type, characters } = action;
+export default function rosterReducer(state = initialState, action = null) {
+  const { type, roster } = action;
 
   switch (type) {
 
     case actionTypes.CREATE_CHARACTER_SUCCESS: {
       return state.merge({
-        characters: characters
+        roster: roster
       });
     }
 

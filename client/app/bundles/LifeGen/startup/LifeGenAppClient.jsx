@@ -1,17 +1,15 @@
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import Roster from '../containers/Roster';
-import createStore from '../store/charactersStore';
+import createStore from '../store/rosterStore';
+import routes from '../routes/routes';
 
 export default (props) => {
   const store = createStore(props);
 
   return (
     <Provider store={store}>
-      <Router history={hashHistory}>
-        <Route path="/" component={Roster}/>
-      </Router>
+      <Router history={hashHistory} children={routes}/>
     </Provider>
   );
 };

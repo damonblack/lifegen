@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CharacterSheet from '../components/CharacterSheet';
 import { bindActionCreators } from 'redux';
-import * as rosterActionCreators from '../actions/rosterActionCreators';
+import * as charactersActionCreators from '../actions/rosterActionCreators';
 
 import BaseComponent from '../../../libs/components/BaseComponent';
 
-function loadRoster(state) {
+function loadCurrentCharacter(state) {
   // Which part of the Redux global state does our component want to receive as props?
   return { data: state.rosterStore };
 }
 
-class Roster extends BaseComponent {
+class Play extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
@@ -19,12 +18,12 @@ class Roster extends BaseComponent {
 
   render() {
     const { dispatch, data } = this.props;
-    const actions = bindActionCreators(rosterActionCreators, dispatch);
+    const actions = bindActionCreators(charactersActionCreators, dispatch);
 
     return (
       <div>
         {
-          data.get('roster').map( character => {
+          data.get('characters').map( character => {
             return (
               <div className="character_listing" key={character.get('id')}>
                 <CharacterSheet {...{ actions, character }} />
@@ -38,4 +37,4 @@ class Roster extends BaseComponent {
   }
 }
 
-export default connect(loadRoster)(Roster);
+export default connect(loadCurrentCharacter)(Play);

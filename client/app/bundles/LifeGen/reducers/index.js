@@ -1,10 +1,10 @@
-import charactersReducer from './charactersReducer';
-import { initialState as characterState } from './charactersReducer';
+import rosterReducer from './rosterReducer';
+import { initialState as rosterState } from './rosterReducer';
 
 export default {
-  characterStore: charactersReducer,
+  rosterStore: rosterReducer,
 };
 
 export const initialStates = {
-  characterState,
+  rosterState,
 };

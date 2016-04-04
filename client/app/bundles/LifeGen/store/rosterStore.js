@@ -4,11 +4,11 @@ import reducers from '../reducers';
 import { initialStates } from '../reducers';
 
 export default props => {
-  const initialCharacters = props.characters;
-  const { characterState } = initialStates;
+  const initialRoster = props.characters;
+  const { rosterState } = initialStates;
   const initialState = {
-    characterStore: characterState.merge({
-      characters: initialCharacters
+    rosterStore: rosterState.merge({
+      roster: initialRoster
     })
   };
 

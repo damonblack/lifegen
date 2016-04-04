@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import Roster from '../containers/Roster';
-import createStore from '../store/charactersStore';
+import createStore from '../store/rosterStore';
 
 export default (props) => {
   console.log('LifeGenAppServer called');
