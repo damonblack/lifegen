@@ -55,10 +55,12 @@
     "loader-utils": "^0.2.12",
     "lodash": "^4.3.0",
     "react": "^0.14.7",
+    "react-addons-pure-render-mixin": "^0.14.8",
     "react-dom": "^0.14.7",
     "react-on-rails": "3.0.3",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1",
+    "redux-thunk": "^2.0.1",
     "webpack": "^1.12.13"
   },
   "devDependencies": {

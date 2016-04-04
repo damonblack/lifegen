@@ -3,42 +3,38 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import requestManager from '../../../libs/requestManager';
 import CharacterSheet from '../components/CharacterSheet';
+import { bindActionCreators } from 'redux';
+import * as charactersActionCreators from '../actions/charactersActionCreators';
+
+import BaseComponent from '../../../libs/components/BaseComponent';
 
 function loadCharacters(state) {
-  return { characters: state };
+  // Which part of the Redux global state does our component want to receive as props?
+  return { data: state.characterStore };
 }
 
-class Roster extends React.Component {
+class Roster extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { characters: props.characters };
-    _.bindAll(this, ['_newCharacter', '_updateCharacters']);
-  }
-
-  _newCharacter() {
-    requestManager.createCharacter().then(this._updateCharacters)
-  }
-
-  _updateCharacters(response) {
-    this.setState({characters: response.data.characters});
   }
 
   render() {
-    var characters = this.state.characters;
+    const { dispatch, data } = this.props;
+    const actions = bindActionCreators(charactersActionCreators, dispatch);
 
     return (
       <div>
         {
-          characters.map(function(character) {
+          data.get('characters').map( character => {
             return (
-              <div className="character_listing" key={character.id}>
-                <CharacterSheet character={character} updateCharacters={this._updateCharacters}/>
+              <div className="character_listing" key={character.get('id')}>
+                <CharacterSheet {...{ actions, character }} />
               </div>
             );
-          }.bind(this))
+          })
         }
-        <button className="new-character-btn" onClick={this._newCharacter}>New Character</button>
+        <button className="new-character-btn" onClick={actions.createCharacter}>New Character</button>
       </div>
     );
   }

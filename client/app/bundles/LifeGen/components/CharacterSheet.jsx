@@ -1,13 +1,14 @@
 import React from 'react';
 import _ from 'lodash';
-import requestManager from '../../../libs/requestManager';
 
-export default class CharacterSheet extends React.Component {
+import BaseComponent from '../../../libs/components/BaseComponent';
+
+export default class CharacterSheet extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
     this.state = {
-      name: this.props.character.characterSheet.name,
+      name: this.props.character.get('characterSheet').get('name'),
       modified: false
     };
 
@@ -17,13 +18,12 @@ export default class CharacterSheet extends React.Component {
       '_updateName',
       '_onKeyDown',
       '_saveName',
-      '_displayStats',
+      '_displayStats'
     ]);
   }
 
   _deleteMe() {
-    requestManager.deleteCharacter(this.props.character.id)
-      .then(this.props.updateCharacters);
+    this.props.actions.deleteCharacter(this.props.character.get('id'));
   }
 
   _updateName(event) {
@@ -41,31 +41,34 @@ export default class CharacterSheet extends React.Component {
 
   _saveName(event) {
     if (this.state.modified) {
-      requestManager.updateCharacter(this.props.character.id, {
+      this.setState({modified: false});
+      this.props.actions.updateCharacter(this.props.character.get('id'), {
           characterSheet: {
             name: event.target.value
           }
         }
-      ).then(this.setState({modified: false}));
+      );
     }
   }
 
   _displayStats(attributes) {
-    return (
-      <div>
-        { _.toPairs(attributes).map( function(attr) {
-          return (
-            <span className='attribute' key={attr[0]}>
-              {`${attr[0]}: ${attr[1]} `}
-            </span>
-          );
-        })}
-      </div>
-    );
+    if (attributes) {
+      return (
+        <div>
+          { _.toPairs(attributes.toJS()).map(function(attr) {
+            return (
+              <span className='attribute' key={attr[0]}>
+                {`${attr[0]}: ${attr[1]} `}
+              </span>
+            );
+          })}
+        </div>
+      );
+    }
   }
 
   render() {
-    var characterSheet = this.props.character.characterSheet;
+    var characterSheet = this.props.character.get('characterSheet');
     return (
       <div>
         <input
@@ -76,8 +79,8 @@ export default class CharacterSheet extends React.Component {
           onBlur = {this._saveName}
           onKeyDown = {this._onKeyDown}
         />
-        { this._displayStats(characterSheet.attributes) }
-        { this._displayStats(characterSheet.skills) }
+        { this._displayStats(characterSheet.get('attributes')) }
+        { this._displayStats(characterSheet.get('skills')) }
         <button onClick={this._deleteMe}>X</button>
       </div>
     );

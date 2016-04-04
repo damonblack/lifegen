@@ -1,26 +1,25 @@
 /* eslint new-cap: 0 */
 
 import Immutable from 'immutable';
+import * as actionTypes from '../constants/charactersConstants';
 
-export const $$initialState = Immutable.fromJS({
-  $$characters: [],
+export const initialState = Immutable.fromJS({
+  characters: [],
 });
 
-export default function charactersReducer($$state = $$initialState, action = null) {
-  const { type, comment, comments, error } = action;
+export default function charactersReducer(state = initialState, action = null) {
+  const { type, characters } = action;
 
   switch (type) {
 
-    //case actionTypes.FETCH_COMMENTS_SUCCESS: {
-    //  return $$state.merge({
-    //    $$comments: comments,
-    //    fetchCommentError: null,
-    //    isFetching: false,
-    //  });
-    //}
+    case actionTypes.CREATE_CHARACTER_SUCCESS: {
+      return state.merge({
+        characters: characters
+      });
+    }
 
     default: {
-      return $$state;
+      return state;
     }
   }
 }
