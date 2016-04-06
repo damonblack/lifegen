@@ -1,6 +1,7 @@
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from '../reducers';
+//import { routerReducer } from 'react-router-redux';
 import { initialStates } from '../reducers';
 
 export default props => {
@@ -12,7 +13,8 @@ export default props => {
     })
   };
 
-  const reducer = combineReducers({ ...reducers, });
+  const reducer = combineReducers({ ...reducers });
+  //, routing: routerReducer });
 
   const finalCreateStore = compose(applyMiddleware(thunkMiddleware))(createStore);
 

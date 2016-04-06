@@ -2,12 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as charactersActionCreators from '../actions/rosterActionCreators';
+import AttributesRow from '../components/AttributesRow'
 
 import BaseComponent from '../../../libs/components/BaseComponent';
 
-function loadCurrentCharacter(state) {
-  // Which part of the Redux global state does our component want to receive as props?
-  return { data: state.rosterStore };
+function loadCurrentCharacter(state, ownProps) {
+  let charId = ownProps.params.id;
+  return {
+    character: state.rosterStore.get('roster')
+      .find((char) => {
+        return char.get('id') == charId;
+      })
+  };
 }
 
 class Play extends BaseComponent {
@@ -17,21 +23,16 @@ class Play extends BaseComponent {
   }
 
   render() {
-    const { dispatch, data } = this.props;
+    const { dispatch, character } = this.props;
     const actions = bindActionCreators(charactersActionCreators, dispatch);
+
+    const characterSheet = character.get('characterSheet');
 
     return (
       <div>
-        {
-          data.get('characters').map( character => {
-            return (
-              <div className="character_listing" key={character.get('id')}>
-                <CharacterSheet {...{ actions, character }} />
-              </div>
-            );
-          })
-        }
-        <button className="new-character-btn" onClick={actions.createCharacter}>New Character</button>
+        <h2>{characterSheet.get('name')}</h2>
+        <AttributesRow attrs={characterSheet.get('attributes')} />
+        <AttributesRow attrs={characterSheet.get('skills')} />
       </div>
     );
   }

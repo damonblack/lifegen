@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router';
 import _ from 'lodash';
+import AttributesRow from './AttributesRow.jsx';
 
 import BaseComponent from '../../../libs/components/BaseComponent';
 
@@ -51,24 +53,9 @@ export default class CharacterSheet extends BaseComponent {
     }
   }
 
-  _displayStats(attributes) {
-    if (attributes) {
-      return (
-        <div>
-          { _.toPairs(attributes.toJS()).map(function(attr) {
-            return (
-              <span className='attribute' key={attr[0]}>
-                {`${attr[0]}: ${attr[1]} `}
-              </span>
-            );
-          })}
-        </div>
-      );
-    }
-  }
-
   render() {
-    var characterSheet = this.props.character.get('characterSheet');
+    let characterSheet = this.props.character.get('characterSheet');
+
     return (
       <div>
         <input
@@ -79,9 +66,9 @@ export default class CharacterSheet extends BaseComponent {
           onBlur = {this._saveName}
           onKeyDown = {this._onKeyDown}
         />
-        { this._displayStats(characterSheet.get('attributes')) }
-        { this._displayStats(characterSheet.get('skills')) }
-        <button onClick={this._deleteMe}>X</button>
+        <AttributesRow attrs={ characterSheet.get('attributes')}/>
+        <AttributesRow attrs={ characterSheet.get('skills')}/>
+        <Link to={"/" + this.props.character.get('id')}>Play</Link>
       </div>
     );
   }
