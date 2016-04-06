@@ -19,8 +19,7 @@ export default class CharacterSheet extends BaseComponent {
       '_deleteMe',
       '_updateName',
       '_onKeyDown',
-      '_saveName',
-      '_displayStats'
+      '_saveName'
     ]);
   }
 

@@ -16,8 +16,6 @@ export default class AttributesRow extends BaseComponent {
       <div>
         { _.toPairs(attrs).map(function(attr) {
           return (
-          return (
-          return (
             <span className='attribute' key={attr[0]}>
               {`${attr[0]}: ${attr[1]} `}
             </span>
