@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as charactersActionCreators from '../actions/rosterActionCreators';
 import AttributesRow from '../components/AttributesRow'
+import NameEditor from '../components/NameEditor';
 
 import BaseComponent from '../../../libs/components/BaseComponent';
 
@@ -30,7 +31,7 @@ class Play extends BaseComponent {
 
     return (
       <div>
-        <h2>{characterSheet.get('name')}</h2>
+        <NameEditor name={characterSheet.get('name')} updateName={actions.updateCharacter.bind(this, character.get('id'))}/>
         <AttributesRow attrs={characterSheet.get('attributes')} />
         <AttributesRow attrs={characterSheet.get('skills')} />
       </div>
