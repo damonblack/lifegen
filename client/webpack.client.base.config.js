@@ -24,6 +24,7 @@ module.exports = {
       './app/bundles/LifeGen/startup/clientRegistration',
     ],
   },
+  devtool: 'source-map',
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {

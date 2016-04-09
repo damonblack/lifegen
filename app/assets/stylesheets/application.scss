@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.selected-skills {
+  span {
+    margin: 5px;
+  }
+  border-style: solid;
+  border-color: blue;
+  border-width: 1px;
+}
